@@ -1,0 +1,5 @@
+Applicable will be a cross-platform framework for mobile applications.
+
+We aim to create abstractions for all common services on the phones. This will include, GPS, Compass, Database, Web services, Camera, and so on.
+
+The plan is to support iOS devices via MonoTouch, Android devices via MonoDroid and WP7 devices via Silverlight. Maybe we will add other platforms later. :-)
