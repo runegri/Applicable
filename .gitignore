@@ -1,0 +1,10 @@
+Obj
+Bin
+*.userprefs
+*.pidb
+*.orig
+
+Src/WP7/_ReSharper.Applicable.WP7/ProjectModel/ProjectModel.dat
+*.user
+*.suo
+Src/WP7/obj/*
