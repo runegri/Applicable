@@ -1,6 +1,5 @@
-
 using System;
-namespace GpsTool
+namespace Applicable.Location
 {
 	public class LocationData
 	{

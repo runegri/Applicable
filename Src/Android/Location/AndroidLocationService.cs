@@ -1,25 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.Locations;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
-namespace Applicable
+namespace Applicable.Location
 {
-    public class AndroidGpsService : IGpsService, ILocationListener
+    public class AndroidLocationService : ILocationService, ILocationListener
     {
 
         private readonly LocationManager _locationManager;
         private readonly Activity _activity;
 
-        public AndroidGpsService(Activity activity)
+        public AndroidLocationService(Activity activity)
         {
             _activity = activity;
             _locationManager = (LocationManager)_activity.GetSystemService(Context.LocationService);
@@ -45,7 +38,7 @@ namespace Applicable
 
         #region Implementation of ILocationListener
 
-        public void OnLocationChanged(Location location)
+        public void OnLocationChanged(Android.Locations.Location location)
         {
             var locationChanged = LocationChanged;
             if (locationChanged != null)

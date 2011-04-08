@@ -1,17 +1,12 @@
 using System;
-namespace GpsTool
+namespace Applicable.Location
 {
-	public interface IGpsService
+	public interface ILocationService
 	{
 		Action<LocationData> LocationChanged { get; set; }
 		void Start();
 		void Stop();
 	}
-
-
-
-
-	
 	
 }
 

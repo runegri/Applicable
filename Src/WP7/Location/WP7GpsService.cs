@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Device.Location;
-using GpsTool;
 
-namespace Applicable
+namespace Applicable.Location
 {
-    public class Wp7GpsService : IGpsService
+    public class Wp7LocationService : ILocationService
     {
 
         private readonly GeoCoordinateWatcher _watcher;
 
-        public Wp7GpsService()
+        public Wp7LocationService()
         {
             _watcher = new GeoCoordinateWatcher();
             _watcher.PositionChanged += PositionChanged;
