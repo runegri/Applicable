@@ -1,15 +1,15 @@
 using System;
 using MonoTouch.CoreLocation;
 using MonoTouch.Foundation;
-namespace GpsTool
+namespace Applicable.Location
 {
 	[Preserve(AllMembers=true)]
-	public class IOSGpsService : IGpsService
+	public class IosLocationService : ILocationService
 	{
 
 		private CLLocationManager _locationManager;
 
-		public IOSGpsService ()
+		public IosLocationService ()
 		{
 			_locationManager = new CLLocationManager ();
 			_locationManager.Delegate = new GpsListenerDelegate (this);
@@ -37,11 +37,11 @@ namespace GpsTool
 	internal class GpsListenerDelegate : CLLocationManagerDelegate
 	{
 
-		private IOSGpsService _gpsService;
+		private IosLocationService _gpsService;
 		private CLLocation _lastLocation;
 		private CLHeading _lastHeading;
 
-		public GpsListenerDelegate (IOSGpsService gpsService)
+		public GpsListenerDelegate (IosLocationService gpsService)
 		{
 			_gpsService = gpsService;
 		}
