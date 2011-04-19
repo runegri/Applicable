@@ -1,0 +1,15 @@
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json\Bin\Debug\WindowsPhone\Newtonsoft.Json.WindowsPhone.dll
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json\Bin\Debug\WindowsPhone\Newtonsoft.Json.WindowsPhone.pdb
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json\obj\Debug\ResolveAssemblyReference.cache
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.WindowsPhone.dll
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.WindowsPhone.pdb
+D:\@SRC\MuPP\Src\Wp7Sanntid\Json.Net\trunk\Src\Newtonsoft.Json\Bin\Debug\WindowsPhone\Newtonsoft.Json.WindowsPhone.dll
+D:\@SRC\MuPP\Src\Wp7Sanntid\Json.Net\trunk\Src\Newtonsoft.Json\Bin\Debug\WindowsPhone\Newtonsoft.Json.WindowsPhone.pdb
+D:\@SRC\MuPP\Src\Wp7Sanntid\Json.Net\trunk\Src\Newtonsoft.Json\obj\Debug\ResolveAssemblyReference.cache
+D:\@SRC\MuPP\Src\Wp7Sanntid\Json.Net\trunk\Src\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.WindowsPhone.dll
+D:\@SRC\MuPP\Src\Wp7Sanntid\Json.Net\trunk\Src\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.WindowsPhone.pdb
+C:\@src\Applicable\lib\WP7\Json.Net\Newtonsoft.Json\Bin\Debug\WindowsPhone\Newtonsoft.Json.WindowsPhone.dll
+C:\@src\Applicable\lib\WP7\Json.Net\Newtonsoft.Json\Bin\Debug\WindowsPhone\Newtonsoft.Json.WindowsPhone.pdb
+C:\@src\Applicable\lib\WP7\Json.Net\Newtonsoft.Json\obj\Debug\ResolveAssemblyReference.cache
+C:\@src\Applicable\lib\WP7\Json.Net\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.WindowsPhone.dll
+C:\@src\Applicable\lib\WP7\Json.Net\Newtonsoft.Json\obj\Debug\Newtonsoft.Json.WindowsPhone.pdb

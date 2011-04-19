@@ -1,0 +1,13 @@
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\Bin\Debug\WindowsPhone\Newtonsoft.Json.Tests.WindowsPhone.dll
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\Bin\Debug\WindowsPhone\Newtonsoft.Json.Tests.WindowsPhone.pdb
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\Bin\Debug\WindowsPhone\Newtonsoft.Json.WindowsPhone.dll
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\Bin\Debug\WindowsPhone\nunit.framework.dll
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\Bin\Debug\WindowsPhone\system.dll
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\Bin\Debug\WindowsPhone\System.Net.dll
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\Bin\Debug\WindowsPhone\System.Runtime.Serialization.dll
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\Bin\Debug\WindowsPhone\System.Windows.dll
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\Bin\Debug\WindowsPhone\System.Xml.dll
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\Bin\Debug\WindowsPhone\Newtonsoft.Json.WindowsPhone.pdb
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\obj\Debug\Newtonsoft.Json.Tests.WindowsPhone.dll
+D:\@SRC\Json.Net\trunk\Src\Newtonsoft.Json.Tests\obj\Debug\Newtonsoft.Json.Tests.WindowsPhone.pdb

@@ -1,0 +1,6 @@
+D:\@SRC\MuPP\Src\Wp7Sanntid\Json.Net\trunk\Src\Newtonsoft.Json\Bin\Release\WindowsPhone\Newtonsoft.Json.WindowsPhone.dll
+D:\@SRC\MuPP\Src\Wp7Sanntid\Json.Net\trunk\Src\Newtonsoft.Json\Bin\Release\WindowsPhone\Newtonsoft.Json.WindowsPhone.pdb
+D:\@SRC\MuPP\Src\Wp7Sanntid\Json.Net\trunk\Src\Newtonsoft.Json\obj\Release\ResolveAssemblyReference.cache
+D:\@SRC\MuPP\Src\Wp7Sanntid\Json.Net\trunk\Src\Newtonsoft.Json\obj\Release\Newtonsoft.Json.WindowsPhone.dll
+D:\@SRC\MuPP\Src\Wp7Sanntid\Json.Net\trunk\Src\Newtonsoft.Json\obj\Release\Newtonsoft.Json.WindowsPhone.pdb
+D:\@SRC\MuPP\Src\Wp7Sanntid\Json.Net\trunk\Src\Newtonsoft.Json\Bin\Release\WindowsPhone\Newtonsoft.Json.WindowsPhone.xml

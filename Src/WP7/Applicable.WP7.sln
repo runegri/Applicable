@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applicable.WP7", "Applicable.WP7.csproj", "{C6EF4B90-73CD-4672-8D5C-A662B0EE67D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json.WindowsPhone", "..\..\lib\WP7\Json.Net\Newtonsoft.Json\Newtonsoft.Json.WindowsPhone.csproj", "{7A7F70AB-5C07-47ED-BDD2-ECC14DBACA5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{C6EF4B90-73CD-4672-8D5C-A662B0EE67D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6EF4B90-73CD-4672-8D5C-A662B0EE67D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6EF4B90-73CD-4672-8D5C-A662B0EE67D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A7F70AB-5C07-47ED-BDD2-ECC14DBACA5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A7F70AB-5C07-47ED-BDD2-ECC14DBACA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A7F70AB-5C07-47ED-BDD2-ECC14DBACA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A7F70AB-5C07-47ED-BDD2-ECC14DBACA5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
