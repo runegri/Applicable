@@ -51,9 +51,6 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common\Db\SQLite.cs">
-      <Link>Db\SQLite.cs</Link>
-    </Compile>
     <Compile Include="..\Common\Db\SQLiteConnectionExtensions.cs">
       <Link>Db\SQLiteConnectionExtensions.cs</Link>
     </Compile>
@@ -69,6 +66,7 @@
     <Compile Include="..\Common\Tools\TinyIoC.cs">
       <Link>Tools\TinyIoC.cs</Link>
     </Compile>
+    <Compile Include="Db\Sqlite.cs" />
     <Compile Include="Location\WP7GpsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
