@@ -102,6 +102,9 @@
       <Link>Tools\TinyIoC.cs</Link>
     </Compile>
     <Compile Include="Location\IosLocationService.cs" />
+    <Compile Include="..\Common\Location\DebugLocationService.cs">
+      <Link>Location\DebugLocationService.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Db\" />
