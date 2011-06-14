@@ -33,9 +33,8 @@ namespace Applicable.Location
                 Log.Debug(Tag, "Already started");
                 return;
             }
-            var locationProvider = _locationManager.GetBestProvider(new Criteria {Accuracy = Accuracy.Fine}, true);
+            var locationProvider = _locationManager.GetBestProvider(new Criteria {Accuracy = Accuracy.Coarse}, true);
             _locationManager.RequestLocationUpdates(locationProvider, 10000, 10, this);
-            //_locationManager.RemoveUpdates(this);
             var lastPosition = _locationManager.GetLastKnownLocation(locationProvider);
             if(lastPosition != null)
             {
