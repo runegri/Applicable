@@ -3,43 +3,65 @@ using Android.App;
 using Android.Content;
 using Android.Locations;
 using Android.OS;
+using Android.Util;
 
 namespace Applicable.Location
 {
-    public class AndroidLocationService : ILocationService, ILocationListener
+    public class AndroidLocationService : Java.Lang.Object, ILocationService, ILocationListener
     {
+
+        private const string Tag = "AndroidLocationService";
 
         private readonly LocationManager _locationManager;
         private readonly Activity _activity;
-
+        private bool isStarted = false;
+       
         public AndroidLocationService(Activity activity)
         {
             _activity = activity;
             _locationManager = (LocationManager)_activity.GetSystemService(Context.LocationService);
+            
+            Log.Debug(Tag, "Created");
         }
 
         public Action<LocationData> LocationChanged { get; set; }
 
         public void Start()
         {
-            var locationProvider = _locationManager.GetBestProvider(new Criteria {Accuracy = Accuracy.Coarse}, true);
-            _locationManager.RequestLocationUpdates(locationProvider, 1000, 10, this);
+            if (isStarted)
+            {
+                Log.Debug(Tag, "Already started");
+                return;
+            }
+            var locationProvider = _locationManager.GetBestProvider(new Criteria {Accuracy = Accuracy.Fine}, true);
+            _locationManager.RequestLocationUpdates(locationProvider, 10000, 10, this);
+            //_locationManager.RemoveUpdates(this);
             var lastPosition = _locationManager.GetLastKnownLocation(locationProvider);
             if(lastPosition != null)
             {
                 OnLocationChanged(lastPosition);
             }
+            isStarted = true;
+            Log.Debug(Tag, "Started");
         }
 
         public void Stop()
         {
+            if (!isStarted)
+            {
+                Log.Debug(Tag, "Already stopped");
+                return;
+            }
             _locationManager.RemoveUpdates(this);
+            isStarted = false;
+            Log.Debug(Tag, "Stopped");
         }
 
         #region Implementation of ILocationListener
 
         public void OnLocationChanged(Android.Locations.Location location)
         {
+            Log.Debug(Tag, "Location changed");
             var locationChanged = LocationChanged;
             if (locationChanged != null)
             {
@@ -67,13 +89,6 @@ namespace Applicable.Location
 
         #endregion
 
-        #region Implementation of IJavaObject
-
-        public IntPtr Handle
-        {
-            get { return _activity.Handle; }
-            set { }
-        }
-        #endregion
     }
+
 }
