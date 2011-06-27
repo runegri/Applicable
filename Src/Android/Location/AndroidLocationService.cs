@@ -34,14 +34,17 @@ namespace Applicable.Location
                 return;
             }
             var locationProvider = _locationManager.GetBestProvider(new Criteria {Accuracy = Accuracy.Coarse}, true);
+            Log.Debug(Tag, "Using location provider: " + locationProvider);
             _locationManager.RequestLocationUpdates(locationProvider, 10000, 10, this);
+            
+            isStarted = true;
+            Log.Debug(Tag, "Started");
+
             var lastPosition = _locationManager.GetLastKnownLocation(locationProvider);
-            if(lastPosition != null)
+            if (lastPosition != null)
             {
                 OnLocationChanged(lastPosition);
             }
-            isStarted = true;
-            Log.Debug(Tag, "Started");
         }
 
         public void Stop()
@@ -60,18 +63,19 @@ namespace Applicable.Location
 
         public void OnLocationChanged(Android.Locations.Location location)
         {
-            Log.Debug(Tag, "Location changed");
+            
             var locationChanged = LocationChanged;
             if (locationChanged != null)
             {
+                
                 var latitude = location.Latitude;
                 var longtitude = location.Longitude;
                 var heading = location.Bearing;
                 var accuracy = location.Accuracy;
-                var timestamp = DateTime.FromFileTimeUtc(location.Time);
-
+                var startOfEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                var timestamp = startOfEpoch.AddMilliseconds(location.Time).ToLocalTime();
                 var locationData = new LocationData(latitude, longtitude, heading, accuracy, timestamp);
-
+                Log.Debug(Tag, "Location changed: " + locationData);
                 locationChanged(locationData);
             }
 
