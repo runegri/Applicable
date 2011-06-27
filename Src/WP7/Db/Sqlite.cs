@@ -662,6 +662,10 @@ namespace SQLite
         {
             if (_open && Handle != null)
             {
+                foreach (var sqlInsertCommand in _mappings.Values)
+                {
+                    sqlInsertCommand.Dispose();
+                }
                 Sqlite3.Close(Handle);
                 Handle = null;
                 _open = false;
@@ -717,8 +721,7 @@ namespace SQLite
 
         Column _autoPk = null;
         Column[] _insertColumns = null;
-        string _insertSql = null;
-
+        
         public TableMapping(Type type)
         {
             MappedType = type;
@@ -777,31 +780,45 @@ namespace SQLite
             return exact;
         }
 
-        public string InsertSql(string extra)
-        {
-            if (_insertSql == null)
-            {
-                var cols = InsertColumns;
-                _insertSql = string.Format("insert {3} into \"{0}\"({1}) values ({2})", TableName, string.Join(",", (from c in cols
-                                                                                                                     select "\"" + c.Name + "\"").ToArray()), string.Join(",", (from c in cols
-                                                                                                                                                                                select "?").ToArray()), extra);
-            }
-            return _insertSql;
-        }
-
+       
         PreparedSqlLiteInsertCommand _insertCommand;
         string _insertCommandExtra = null;
 
         public PreparedSqlLiteInsertCommand GetInsertCommand(SQLiteConnection conn, string extra)
         {
-            if (_insertCommand == null || _insertCommandExtra != extra)
+
+            if (_insertCommand == null)
             {
-                var insertSql = InsertSql(extra);
-                _insertCommand = new PreparedSqlLiteInsertCommand(conn);
-                _insertCommand.CommandText = insertSql;
+                _insertCommand = CreateInsertCommand(conn, extra);
+                _insertCommandExtra = extra;
+            }
+            else if (_insertCommandExtra != extra)
+            {
+                _insertCommand.Dispose();
+                _insertCommand = CreateInsertCommand(conn, extra);
                 _insertCommandExtra = extra;
             }
             return _insertCommand;
+        }
+
+        private PreparedSqlLiteInsertCommand CreateInsertCommand(SQLiteConnection conn, string extra)
+        {
+            var cols = InsertColumns;
+            var insertSql = string.Format("insert {3} into \"{0}\"({1}) values ({2})", TableName, string.Join(",", (from c in cols
+                                                                                                                 select "\"" + c.Name + "\"").ToArray()), string.Join(",", (from c in cols
+                                                                                                                                                                            select "?").ToArray()), extra);
+            var insertCommand = new PreparedSqlLiteInsertCommand(conn);
+            insertCommand.CommandText = insertSql;
+            return insertCommand;
+        }
+
+        protected internal void Dispose()
+        {
+            if (_insertCommand != null) 
+            {
+                _insertCommand.Dispose();
+                _insertCommand = null;
+            }
         }
 
         public abstract class Column
