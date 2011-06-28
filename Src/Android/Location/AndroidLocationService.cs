@@ -33,18 +33,39 @@ namespace Applicable.Location
                 Log.Debug(Tag, "Already started");
                 return;
             }
-            var locationProvider = _locationManager.GetBestProvider(new Criteria {Accuracy = Accuracy.Coarse}, true);
-            Log.Debug(Tag, "Using location provider: " + locationProvider);
-            _locationManager.RequestLocationUpdates(locationProvider, 10000, 10, this);
+            
+            _locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, 10000, 10, this);
+            _locationManager.RequestLocationUpdates(LocationManager.GpsProvider, 10000, 10, this);
             
             isStarted = true;
             Log.Debug(Tag, "Started");
 
-            var lastPosition = _locationManager.GetLastKnownLocation(locationProvider);
+            var lastPositionNetwork = _locationManager.GetLastKnownLocation(LocationManager.NetworkProvider);
+            var lastPositionGps = _locationManager.GetLastKnownLocation(LocationManager.GpsProvider);
+            Android.Locations.Location lastPosition = null;
+            lastPosition = LatestPosition(lastPositionNetwork, lastPositionGps);
+            
             if (lastPosition != null)
             {
                 OnLocationChanged(lastPosition);
             }
+        }
+
+        private static Android.Locations.Location LatestPosition(Android.Locations.Location lastPositionNetwork, Android.Locations.Location lastPositionGps)
+        {
+            if (lastPositionNetwork != null && lastPositionGps != null)
+            {
+                return lastPositionNetwork.Time > lastPositionGps.Time ? lastPositionNetwork : lastPositionGps;
+            }
+            else if (lastPositionGps != null)
+            {
+                return lastPositionGps;
+            }
+            else if (lastPositionNetwork != null)
+            {
+                return lastPositionNetwork;
+            }
+            return null;
         }
 
         public void Stop()
