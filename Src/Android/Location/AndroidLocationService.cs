@@ -34,8 +34,8 @@ namespace Applicable.Location
                 Stop();
             }
             
-            _locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, 10000, 10, this);
-            _locationManager.RequestLocationUpdates(LocationManager.GpsProvider, 10000, 10, this);
+            _locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, 1000, 0, this);
+            _locationManager.RequestLocationUpdates(LocationManager.GpsProvider, 1000, 0, this);
             
             isStarted = true;
             Log.Debug(Tag, "Started");
