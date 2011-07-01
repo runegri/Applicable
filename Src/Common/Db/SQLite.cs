@@ -567,11 +567,8 @@ namespace SQLite
                 vals[i] = cols[i].GetValue(obj);
             }
 
-            int count;
-            using (var insertCmd = map.GetInsertCommand(this, extra))
-            {
-                count = insertCmd.ExecuteNonQuery(vals);
-            }
+            var insertCmd = map.GetInsertCommand(this, extra);
+            var count = insertCmd.ExecuteNonQuery(vals);
 
             if (map.HasAutoIncPK)
             {
