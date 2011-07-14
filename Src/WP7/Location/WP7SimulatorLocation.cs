@@ -24,29 +24,14 @@ namespace Applicable.Location
         {
             _latitude = 63.425630295;
             _longtitude = 10.4458852325;
-           // _timer = new DispatcherTimer();
-           // _timer.Interval = TimeSpan.FromMinutes(1);
-           // _timer.Tick += new EventHandler(timer_Tick);
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromMilliseconds(1000);
+            _timer.Tick += new EventHandler(timer_Tick);
+            _timer.Start();
         }
 
         private void timer_Tick(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
-            if (_running)
-            {
-                var loc = new LocationData(_latitude, _longtitude, 0, 1, DateTime.Now);
-                if (LocationChanged != null)
-                {
-                    LocationChanged(loc);
-                }
-                _latitude += 0.000001;
-                _longtitude += 0.000001;
-            }
-        }
-
-        private void SetLocation()
-        {
-            //throw new NotImplementedException();
+        {            
             if (_running)
             {
                 var loc = new LocationData(_latitude, _longtitude, 0, 1, DateTime.Now);
@@ -61,8 +46,7 @@ namespace Applicable.Location
 
         public void Start()
         {
-            _running = true;
-            SetLocation();
+            _running = true;            
         }
 
         public void Stop()
