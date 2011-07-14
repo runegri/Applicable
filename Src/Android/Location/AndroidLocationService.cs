@@ -30,12 +30,12 @@ namespace Applicable.Location
         {
             if (isStarted)
             {
-                Log.Debug(Tag, "Already started");
-                return;
+                Log.Debug(Tag, "Already started, stopping");
+                Stop();
             }
             
-            _locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, 10000, 10, this);
-            _locationManager.RequestLocationUpdates(LocationManager.GpsProvider, 10000, 10, this);
+            _locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, 1000, 0, this);
+            _locationManager.RequestLocationUpdates(LocationManager.GpsProvider, 1000, 0, this);
             
             isStarted = true;
             Log.Debug(Tag, "Started");
@@ -44,10 +44,15 @@ namespace Applicable.Location
             var lastPositionGps = _locationManager.GetLastKnownLocation(LocationManager.GpsProvider);
             Android.Locations.Location lastPosition = null;
             lastPosition = LatestPosition(lastPositionNetwork, lastPositionGps);
-            
+
             if (lastPosition != null)
             {
+                Log.Debug(Tag, "Reporting last known position");
                 OnLocationChanged(lastPosition);
+            }
+            else
+            {
+                Log.Debug(Tag, "No known position");
             }
         }
 
