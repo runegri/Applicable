@@ -660,9 +660,12 @@ namespace SQLite
         {
             if (_open && Handle != null)
             {
-                foreach (var sqlInsertCommand in _mappings.Values)
+                if (_mappings != null)
                 {
-                    sqlInsertCommand.Dispose();
+                    foreach (var sqlInsertCommand in _mappings.Values)
+                    {
+                        sqlInsertCommand.Dispose();
+                    }
                 }
                 Sqlite3.Close(Handle);
                 Handle = null;
