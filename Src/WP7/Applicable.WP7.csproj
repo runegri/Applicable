@@ -70,7 +70,7 @@
       <Link>Tools\TinyIoC.cs</Link>
     </Compile>
     <Compile Include="Db\Sqlite.cs" />
-    <Compile Include="Location\WP7GpsService.cs" />
+    <Compile Include="Location\WP7LocationService.cs" />
     <Compile Include="Location\WP7SimulatorLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
