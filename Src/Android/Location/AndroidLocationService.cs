@@ -15,6 +15,7 @@ namespace Applicable.Location
         private readonly LocationManager _locationManager;
         private readonly Activity _activity;
         private bool isStarted = false;
+        private bool isPaused = false;
        
         public AndroidLocationService(Activity activity)
         {
@@ -28,16 +29,18 @@ namespace Applicable.Location
 
         public void Start()
         {
+            isPaused = false;
             if (isStarted)
             {
-                Log.Debug(Tag, "Already started, stopping");
-                Stop();
+                Log.Debug(Tag, "Already started,");
+                return;
             }
-            
+
+
             _locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, 1000, 0, this);
             _locationManager.RequestLocationUpdates(LocationManager.GpsProvider, 1000, 0, this);
-            
             isStarted = true;
+
             Log.Debug(Tag, "Started");
 
             var lastPositionNetwork = _locationManager.GetLastKnownLocation(LocationManager.NetworkProvider);
@@ -56,6 +59,7 @@ namespace Applicable.Location
             }
         }
 
+        
         private static Android.Locations.Location LatestPosition(Android.Locations.Location lastPositionNetwork, Android.Locations.Location lastPositionGps)
         {
             if (lastPositionNetwork != null && lastPositionGps != null)
@@ -75,14 +79,61 @@ namespace Applicable.Location
 
         public void Stop()
         {
+            InternalStop();
+            Log.Debug(Tag, "Stopped");
+            isStarted = false;
+            isPaused = false;
+        }
+
+        private void InternalStop()
+        {
             if (!isStarted)
             {
                 Log.Debug(Tag, "Already stopped");
                 return;
             }
             _locationManager.RemoveUpdates(this);
-            isStarted = false;
-            Log.Debug(Tag, "Stopped");
+        }
+
+        public void Pause()
+        {
+            if (isPaused)
+            {
+                System.Diagnostics.Debug.Assert(!isStarted);
+                Log.Debug(Tag, "Already paused");
+                return;
+            }
+            if (isStarted)
+            {
+                Log.Debug(Tag, "Pausing - Location service was started");
+                InternalStop();
+                isStarted = false;
+                isPaused = true;
+            }
+            else
+            {
+                Log.Debug(Tag, "Pausing - Location service was not started");
+                isPaused = false;
+            }
+        }
+
+        public void Resume()
+        {
+            if (isPaused)
+            {
+                Log.Debug(Tag, "Resume after pause - restarting Location service");
+                isPaused = false;
+                if (isStarted)
+                {
+                    Log.Debug(Tag, "Already started");
+                    return;
+                }
+                Start();
+            }
+            else
+            {
+                Log.Debug(Tag, "Resume after pause - Location service was not paused");
+            }
         }
 
         #region Implementation of ILocationListener
@@ -93,7 +144,6 @@ namespace Applicable.Location
             var locationChanged = LocationChanged;
             if (locationChanged != null)
             {
-                
                 var latitude = location.Latitude;
                 var longtitude = location.Longitude;
                 var heading = location.Bearing;
