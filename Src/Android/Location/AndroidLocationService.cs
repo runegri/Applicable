@@ -3,7 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Locations;
 using Android.OS;
-using Android.Util;
+//using Android.Util;
 
 namespace Applicable.Location
 {
@@ -22,7 +22,7 @@ namespace Applicable.Location
             _activity = activity;
             _locationManager = (LocationManager)_activity.GetSystemService(Context.LocationService);
             
-            Log.Debug(Tag, "Created");
+            //Log.Debug(Tag, "Created");
         }
 
         public Action<LocationData> LocationChanged { get; set; }
@@ -32,7 +32,7 @@ namespace Applicable.Location
             isPaused = false;
             if (isStarted)
             {
-                Log.Debug(Tag, "Already started,");
+                //Log.Debug(Tag, "Already started,");
                 return;
             }
 
@@ -41,7 +41,7 @@ namespace Applicable.Location
             _locationManager.RequestLocationUpdates(LocationManager.GpsProvider, 1000, 0, this);
             isStarted = true;
 
-            Log.Debug(Tag, "Started");
+            //Log.Debug(Tag, "Started");
 
             var lastPositionNetwork = _locationManager.GetLastKnownLocation(LocationManager.NetworkProvider);
             var lastPositionGps = _locationManager.GetLastKnownLocation(LocationManager.GpsProvider);
@@ -50,13 +50,19 @@ namespace Applicable.Location
 
             if (lastPosition != null)
             {
-                Log.Debug(Tag, "Reporting last known position");
+                //Log.Debug(Tag, "Reporting last known position");
                 OnLocationChanged(lastPosition);
             }
             else
             {
-                Log.Debug(Tag, "No known position");
+                //Log.Debug(Tag, "No known position");
             }
+        }
+
+        public bool IsLocationServiceEnabled()
+        {
+            return _locationManager.IsProviderEnabled(LocationManager.GpsProvider) 
+                || _locationManager.IsProviderEnabled(LocationManager.NetworkProvider);
         }
 
         
@@ -80,7 +86,7 @@ namespace Applicable.Location
         public void Stop()
         {
             InternalStop();
-            Log.Debug(Tag, "Stopped");
+            //Log.Debug(Tag, "Stopped");
             isStarted = false;
             isPaused = false;
         }
@@ -89,7 +95,7 @@ namespace Applicable.Location
         {
             if (!isStarted)
             {
-                Log.Debug(Tag, "Already stopped");
+                //Log.Debug(Tag, "Already stopped");
                 return;
             }
             _locationManager.RemoveUpdates(this);
@@ -100,19 +106,19 @@ namespace Applicable.Location
             if (isPaused)
             {
                 System.Diagnostics.Debug.Assert(!isStarted);
-                Log.Debug(Tag, "Already paused");
+                //Log.Debug(Tag, "Already paused");
                 return;
             }
             if (isStarted)
             {
-                Log.Debug(Tag, "Pausing - Location service was started");
+                //Log.Debug(Tag, "Pausing - Location service was started");
                 InternalStop();
                 isStarted = false;
                 isPaused = true;
             }
             else
             {
-                Log.Debug(Tag, "Pausing - Location service was not started");
+                //Log.Debug(Tag, "Pausing - Location service was not started");
                 isPaused = false;
             }
         }
@@ -121,18 +127,18 @@ namespace Applicable.Location
         {
             if (isPaused)
             {
-                Log.Debug(Tag, "Resume after pause - restarting Location service");
+                //Log.Debug(Tag, "Resume after pause - restarting Location service");
                 isPaused = false;
                 if (isStarted)
                 {
-                    Log.Debug(Tag, "Already started");
+                    //Log.Debug(Tag, "Already started");
                     return;
                 }
                 Start();
             }
             else
             {
-                Log.Debug(Tag, "Resume after pause - Location service was not paused");
+                //Log.Debug(Tag, "Resume after pause - Location service was not paused");
             }
         }
 
@@ -151,7 +157,7 @@ namespace Applicable.Location
                 var startOfEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
                 var timestamp = startOfEpoch.AddMilliseconds(location.Time).ToLocalTime();
                 var locationData = new LocationData(latitude, longtitude, heading, accuracy, timestamp);
-                Log.Debug(Tag, "Location changed: " + locationData);
+                //Log.Debug(Tag, "Location changed: " + locationData);
                 locationChanged(locationData);
             }
 
