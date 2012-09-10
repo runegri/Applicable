@@ -21,7 +21,6 @@ namespace Applicable.Location
         {
             _activity = activity;
             _locationManager = (LocationManager)_activity.GetSystemService(Context.LocationService);
-            
             //Log.Debug(Tag, "Created");
         }
 
@@ -36,8 +35,9 @@ namespace Applicable.Location
                 return;
             }
 
-
-            _locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, 1000, 0, this);
+            if (_locationManager.IsProviderEnabled(LocationManager.NetworkProvider))
+                _locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, 1000, 0, this);
+            if (_locationManager.IsProviderEnabled(LocationManager.GpsProvider))
             _locationManager.RequestLocationUpdates(LocationManager.GpsProvider, 1000, 0, this);
             isStarted = true;
 
@@ -169,7 +169,7 @@ namespace Applicable.Location
         public void OnProviderEnabled(string provider)
         { }
 
-        public void OnStatusChanged(string provider, int status, Bundle extras)
+        public void OnStatusChanged(string provider, Android.Locations.Availability status, Bundle extras)
         { }
 
         #endregion
