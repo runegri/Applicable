@@ -22,6 +22,5 @@ namespace Applicable.Location
 		{
 			return string.Format ("[LocationData: Latitude={0}, Longtitude={1}, Heading={2}, Accuracy={3}, Timestamp={4}]", Latitude, Longtitude, Heading, Accuracy, Timestamp);
 		}
-		
 	}
 }

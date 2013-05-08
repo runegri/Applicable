@@ -36,8 +36,7 @@ namespace Applicable.Location
 
             var lastPositionNetwork = _locationManager.GetLastKnownLocation(LocationManager.NetworkProvider);
             var lastPositionGps = _locationManager.GetLastKnownLocation(LocationManager.GpsProvider);
-            Android.Locations.Location lastPosition;
-            lastPosition = LatestPosition(lastPositionNetwork, lastPositionGps);
+            var lastPosition = LatestPosition(lastPositionNetwork, lastPositionGps);
 
             if (lastPosition != null)
             {
@@ -122,7 +121,6 @@ namespace Applicable.Location
 
         public void OnLocationChanged(Android.Locations.Location location)
         {
-            
             var locationChanged = LocationChanged;
             if (locationChanged != null)
             {
@@ -135,7 +133,6 @@ namespace Applicable.Location
                 var locationData = new LocationData(latitude, longtitude, heading, accuracy, timestamp);
                 locationChanged(locationData);
             }
-
         }
 
         public void OnProviderDisabled(string provider)
@@ -148,7 +145,5 @@ namespace Applicable.Location
         { }
 
         #endregion
-
     }
-
 }

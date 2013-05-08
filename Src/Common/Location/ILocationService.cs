@@ -9,6 +9,3 @@ namespace Applicable.Location
         void Stop();
     }
 }
-
-
-
